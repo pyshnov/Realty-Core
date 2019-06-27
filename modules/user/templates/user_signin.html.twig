@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ meta.title }}</title>
+    <meta name="author" content="Aleksandr Pyshnov">
+    <link href ="/core/templates/engine/css/core.css" rel="stylesheet" type="text/css">
+    <link href ="{{ theme }}/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href ="{{ theme }}/css/animate.css" rel="stylesheet" type="text/css">
+    <link href ="{{ theme }}/css/style.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="/core/assets/jquery/jquery.min.js"></script>
+</head>
+<body>
+<div class="text-center loginscreen animated fadeInDown">
+    <h2 class="logo">PyshnovRealtyCMS</h2>
+
+    {% if blocked %}
+        <p style="color: red;">Привышен лимин попыток авторизации. Авторизация с вашего ip временно заморожена.</p>
+    {% else %}
+        {% if error is not empty %}
+            <p style="color: red;">
+                {% for item in error %}
+                    {{ item }} <br>
+                {% endfor %}
+            </p>
+        {% endif %}
+        <form role="form" action="" method="post">
+            <div class="form-group">
+                <input class="form-control" placeholder="Логин" required="" type="text" name="login">
+            </div>
+            <div class="form-group">
+                <input class="form-control" placeholder="Пароль" required="" type="password" name="password">
+            </div>
+            <div class="form-group">
+                <div class="checkbox i-checks text-left">
+                    <label>
+                        <input type="checkbox" name="rememberme" value="1"><span class="cr"><i class="cr-icon fa fa-check"></i></span> Запомнить меня
+                    </label>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-green btn-block">Войти</button>
+            <a class="forgot-password" href="/forgot_password"><small>Забыли пароль?</small></a>
+            <input type="hidden" name="do" value="enter" />
+            <input type="hidden" name="returnUrl" value="{{ return_url }}" />
+        </form>
+    {% endif %}
+    <div class="company"> <small>&copy; Aleksandr Pyshnov 2016 - {{ 'now'|date('Y') }}</small> </div>
+</div>
+
+<!-- Custom and plugin javascript -->
+<script type="text/javascript" src="/core/templates/engine/js/engine.js"></script>
+</body>
+</html>

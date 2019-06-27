@@ -1,0 +1,12 @@
+blog.admin:
+  js:
+    /core/assets/bootbox/bootbox.min.js: {}
+    js/admin.blog.js: {}
+blog.admin.article_add:
+  js:
+    js/bootstrap-datepicker/moment/moment.min.js: {}
+    js/bootstrap-datepicker/moment/moment-with-locales.min.js: {}
+    js/bootstrap-datepicker/js/bootstrap-datetimepicker.min.js: {}
+blog.admin.article_edit:
+  import:
+    - blog.admin.article_add

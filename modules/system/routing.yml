@@ -1,0 +1,60 @@
+system.404:
+  path: '/system/404/'
+  defaults:
+    _controller: '\Pyshnov\system\Controller\SystemController::error404'
+    _title: 'Page not found'
+system.access_denied:
+  path: '/access_denied/'
+  defaults:
+    _controller: '\Pyshnov\system\Controller\SystemController::accessDenied'
+admin:
+  path: '/admin/'
+  defaults:
+    _controller: '\Pyshnov\system\Controller\SystemController::adminMain'
+  requirements:
+    _access: 'admin, moderator'
+admin.help:
+  path: '/admin/help/'
+  defaults:
+    _controller: '\Pyshnov\system\Controller\SystemController::adminHelp'
+  requirements:
+    _access: 'admin, moderator'
+system.reference:
+  path: '/admin/reference/{type}/'
+  defaults:
+    _controller: '\Pyshnov\system\Controller\ReferenceController::adminMain'
+    _title: ' | Справочник'
+  requirements:
+    _access: 'admin'
+system.reference.add:
+  path: '/admin/reference/{type}/add/'
+  defaults:
+    _controller: '\Pyshnov\system\Controller\ReferenceController::adminAdd'
+    _title: ' | Справочник'
+  requirements:
+    _access: 'admin'
+system.modules:
+  path: '/admin/modules/'
+  defaults:
+    _controller: '\Pyshnov\system\Controller\SystemController::adminModule'
+    _title: ' | Расширения'
+  requirements:
+    _access: 'admin'
+system.admin.ajax:
+  path: '/admin/ajax/system/'
+  defaults:
+    _controller: '\Pyshnov\system\Ajax\SystemAjax::runAction'
+  requirements:
+    _access: 'admin'
+ajax:
+  path: '/ajax/'
+  defaults:
+    _controller: '\Pyshnov\system\Controller\SystemController::userAjax'
+main:
+  path: '/'
+  defaults:
+    _controller: '\Pyshnov\system\Controller\SystemController::main'
+img.resize:
+  path: '/image/'
+  defaults:
+    _controller: '\Pyshnov\system\Controller\SystemController::imgResize'

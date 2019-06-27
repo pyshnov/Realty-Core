@@ -1,0 +1,53 @@
+<!-- Modal -->
+<div class="modal fade" id="locationModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Выбор города</h4>
+            </div>
+            <div class="modal-body">
+                <ul class="location-list">
+                    <div class="width-50pr">
+                        <li><a class="js-city__link" data-id="1"><b>Санкт-Петербург</b></a></li>
+                        <li><a class="js-city__link" data-id="2"><b>Москва</b></a></li>
+                        <li><a class="js-city__link" data-id="6">Великие Луки</a></li>
+                        <li><a class="js-city__link" data-id="328">Екатеринбург</a></li>
+                        <li><a class="js-city__link" data-id="327">Калининград</a></li>
+                        <li><a class="js-city__link" data-id="326">Нижний Новгород</a></li>
+                    </div>
+                    <div class="width-50pr">
+                        <li><a class="js-city__link" data-id="325">Новосибирск</a></li>
+                        <li><a class="js-city__link" data-id="324">Омск</a></li>
+                        <li><a class="js-city__link" data-id="330">Оренбург</a></li>
+                        <li><a class="js-city__link" data-id="5">Псков</a></li>
+                        <li><a class="js-city__link" data-id="329">Самара</a></li>
+                    </div>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <div class="col-xs-4">
+                    <div class="row">
+                        <div class="regions-select">
+                            <select id="regionsLocation" class="geo-select" data-live-search="true" title="Выбрать регион" data-width="100%"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="row">
+                        <div class="city-select">
+                            <select id="cityLocation" class="geo-select" disabled title="Выберити город" data-width="100%"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="row">
+                        <button id="applyRegion" class="btn btn-default" disabled >Выбрать</button>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>

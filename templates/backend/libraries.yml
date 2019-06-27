@@ -1,0 +1,19 @@
+all:
+  css:
+    css/font-awesome.min.css: {}
+    css/animate.css: {}
+    css/toastr.css: {}
+    css/style.css: {}
+  js:
+    js/bootstrap.min.js: {}
+    js/metismenu/metisMenu.min.js: {}
+    /core/assets/slimscroll/jquery.slimscroll.min.js: {}
+    /core/assets/bootstrap-select/js/bootstrap-select.min.js: {}
+    /core/assets/toastr/toastr.min.js: {}
+    /core/assets/jquery.maskedinput.min.js: {}
+    /core/assets/bootbox/bootbox.min.js: {}
+    js/main.js: {}
+base:
+  css:
+    css/bootstrap.min.css: {}
+system.admin:

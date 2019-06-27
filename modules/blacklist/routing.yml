@@ -1,0 +1,13 @@
+blacklist.admin:
+    path: '/admin/blacklist/'
+    defaults:
+        _controller: '\Pyshnov\blacklist\Controller\BlacklistController::adminMain'
+        _title: ' | Антиагент'
+    requirements:
+        _access: 'admin, moderator'
+blacklist.admin.ajax:
+    path: '/admin/ajax/blacklist/'
+    defaults:
+        _controller: '\Pyshnov\blacklist\Ajax\BlacklistAjax::runAction'
+    requirements:
+        _access: 'admin, moderator'

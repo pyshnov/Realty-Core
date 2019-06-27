@@ -1,0 +1,12 @@
+reviews:
+  js:
+    js/reviews.js: {}
+reviews.admin:
+  js:
+    js/admin.reviews.js: {}
+reviews.admin.edit:
+  js:
+    js/bootstrap-datepicker/moment/moment.min.js: {}
+    js/bootstrap-datepicker/moment/moment-with-locales.min.js: {}
+    js/bootstrap-datepicker/js/bootstrap-datetimepicker.min.js: {}
+    js/admin.reviews.js: {}

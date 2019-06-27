@@ -1,0 +1,96 @@
+<div class="content-header">
+    <div class="col-lg-9 col-md-8 col-sm-7">
+        <h2>Вопрос-Ответ</h2>
+        {{ breadcrumb }}
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-5">
+        <div class="right-btn text-right">
+            <a href="#" class="btn btn-green" data-toggle="modal" data-target="#faqModalAdd">Добавить вопрос</a>
+        </div>
+    </div>
+</div>
+<div class="content-body">
+    <div class="content-body__header">
+        <h1 class="title">Вопрос-Ответ</h1>
+    </div>
+    <div class="content-body__body">
+        <div class="table-responsive">
+            {% if page.rows %}
+                <table id="pageList" class="table{{ pages|length > 2 ? ' table-striped table-hover' : '' }}">
+                    <thead>
+                    <tr>
+                        <th>Вопрос</th>
+                        <th>Статус</th>
+                        <th>Действие</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for row in page.rows %}
+                        <tr>
+                            <td>{{ row.question }}</td>
+                            <td class="status update-status-faq">
+                                <a href="#" {{ row.active ? ' class="active" data-value="0" title="Деактивировать"' : 'data-value="1" title="Активировать"' }}
+                                   data-id="{{ row.id }}"><i class="fa fa-check"></i></a>
+                            </td>
+                            <td>
+                                <div class="btn-group-table">
+                                    <a href="#" data-id="{{ row.id }}" title="Удалить" class="btn btn-table remove-faq">
+                                        <i class="fa fa-trash-o"></i></a>
+                                    <a href="/admin/faq/edit-{{ row.id }}/" title="Редактировать" class="btn btn-table">
+                                        <i class="fa fa-pencil"></i> </a>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                {% if pager %}
+                    <div class="divider"></div>
+                    {{ pager }}
+                {% endif %}
+            {% else %}
+                Список вопросов-ответов пуст
+            {% endif %}
+        </div>
+    </div>
+</div>
+<div class="modal inmodal" id="faqModalAdd" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content animated bounceInRight">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <i class="fa fa-pencil modal-icon"></i>
+                <h4 class="modal-title">Новый вопрос</h4>
+            </div>
+            <form id="ajaxFaqAdd">
+                <div class="modal-body">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input placeholder="Имя автора" class="form-control" type="text" name="author">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input placeholder="Email автора" class="form-control" type="text" name="author_email">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <textarea name="question" class="form-control" cols="4" placeholder="Вопрос" required></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <textarea name="answer" class="form-control" cols="4" placeholder="Ответ на вопрос"></textarea>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Отменить</button>
+                    <button type="sumbit" class="btn btn-green">Сохранить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

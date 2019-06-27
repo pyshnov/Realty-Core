@@ -1,0 +1,75 @@
+/*
+ * @copyright  2017 Aleksandr Pyshnov
+ * @link       http://pyshnov.ru
+ * @author     Aleksandr Pyshnov <aleksandr@pyshnov.ru>
+ */
+
+//
+// Pagination (multiple pages)
+// --------------------------------------------------
+.pagination {
+  border-radius: 2px;
+
+  > li {
+    > a,
+    > span {
+      background-color: #FFFFFF;
+      padding: 4px 10px;
+    }
+  }
+  > .active > a,
+  > .active > span {
+    &,
+    &:hover,
+    &:focus {
+      z-index: 3;
+      background-color: #f4f4f4;
+      border-color: #DDDDDD;
+      color: inherit;
+      cursor: default;
+    }
+  }
+
+}
+
+.pagination-group {
+  > a {
+
+    background-color: #FFF;
+    border: 1px solid #DDD;
+    color: inherit;
+    float: left;
+    line-height: 1.42857;
+    margin: 17px 0;
+    padding: 4px 10px;
+    position: relative;
+    text-decoration: none;
+
+    border-radius: @border-radius-small;
+  }
+
+  .pagination {
+    float: left;
+    margin: 17px 6px;
+    border-radius: @border-radius-small;
+  }
+
+}
+
+.pagination {
+  > li {
+
+    &:first-child > a,
+    &:first-child > span {
+      .border-left-radius(@border-radius-small);
+    }
+
+    &:last-child > a,
+    &:last-child > span {
+      .border-right-radius(@border-radius-small);
+    }
+  }
+
+}
+
+

@@ -1,0 +1,5 @@
+type: module
+name: Блог
+description: 'Блог.'
+author: Aleksandr Pyshnov
+version: '0.1.1'

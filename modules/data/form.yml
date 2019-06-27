@@ -1,0 +1,56 @@
+id:
+  label:
+  type: input
+  name: id
+  attributes:
+
+
+active:
+user_id:
+topic_id:
+country_id:
+region_id:
+city_id:
+district_id:
+street_id":
+price',
+text',
+image',
+date_added',
+room_count',
+reviews_count',
+floor',
+floor_count',
+square_all',
+square_live',
+square_rooms',
+square_kitchen',
+bathroom',
+is_telephone',
+furniture',
+number',
+spec',
+fio',
+phone',
+view_count',
+email',
+premium_status_end',
+bold_status_end',
+vip_status_end',
+meta_title',
+meta_description',
+meta_keywords',
+geo_lat',
+geo_lng',
+time_metro',
+how_to_get',
+refrigerator',
+washing_machine',
+television',
+internet',
+lease_period',
+status_data',
+reason_refusal',
+children',
+animal',
+address',

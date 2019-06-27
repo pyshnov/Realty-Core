@@ -1,0 +1,61 @@
+<div class="content-header">
+    <div class="col-lg-9 col-md-8 col-sm-7">
+        <h2>{{ 'system.handbook'|t }}</h2>
+        {{ breadcrumb }}
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-5">
+        <div class="right-btn text-right">
+            <a href="/admin/reference/{{ page.type }}/add/" class="btn btn-green">Добавить {{ page.info.name[2]|lower }}</a>
+        </div>
+    </div>
+</div>
+<div class="content-body">
+    <div class="content-body__header">
+        <h1 class="title">Список {{ page.info.name[1]|lower }}</h1>
+        <small>Дважды кликните по настройке для редактирования. </small>
+    </div>
+    <div class="content-body__body">
+        {% if page.content %}
+            <table id="{{ page.type }}" class="table{{ page.content|length > 2 ? ' table-striped table-hover' : '' }}">
+                <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Название</th>
+                    <th>Машинное имя</th>
+                    {% if page.type != 'country' %}<th>{{ page.info.dependence.name[0] }}</th>{% endif %}
+                    <th>Статус</th>
+                    <th>Действие</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% set dependence_name = page.info.dependence.key %}
+                {% for row in page.content %}
+                    {% set id = row[page.type ~ "_id"] %}
+                    <tr data-id="{{ id }}">
+                        <td>
+                            {{ id }}
+                        </td>
+                        <td class="edit" data-field="name">{{ row.name }}</td>
+                        <td class="edit" data-field="aliases">{{ row.aliases }}</td>
+                        {% if page.type != 'country' %}
+                            <td class="edit" data-load="{{ dependence_name }}">
+                                {{ row[dependence_name ~ '_name'] }}
+                            </td>
+                        {% endif %}
+                        <td class="status">
+                            {{ row.active ? '<a class="update_status_reference active" href="#" data-value="0"  data-toggle="tooltip" data-placement="right" title="Деактивировать"><i class="fa fa-check"></i></a>' :
+                            '<a class="update_status_reference" href="#" data-value="1" data-toggle="tooltip" data-placement="right" title="Активировать"><i class="fa fa-check"></i></a>'}}
+                        </td>
+                        <td>
+                            <a href="#" title="Удалить" class="btn btn-table delete_reference" data-toggle="tooltip" data-placement="right">
+                                <i class="fa fa-trash-o"></i> </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <div class="divider"></div>
+            {{ page.pager }}
+        {% endif %}
+    </div>
+</div>

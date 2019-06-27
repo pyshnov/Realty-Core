@@ -1,0 +1,7 @@
+type: module
+name: sitemap.xml
+description: 'Построение карты сайта.'
+author: Aleksandr Pyshnov
+version: '0.0.1 Alpha'
+
+required: true

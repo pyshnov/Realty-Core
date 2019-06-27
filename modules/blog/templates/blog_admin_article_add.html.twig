@@ -1,0 +1,119 @@
+<div class="content-header">
+    <div class="col-lg-9 col-md-8 col-sm-7">
+        <h2>{{ 'blog.name'|t }}</h2>
+        {{ breadcrumb }}
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-5">
+        <div class="right-btn text-right">
+            <a href="/admin/blog/category_add/" class="btn btn-green">
+                Добавить категорию
+            </a>
+        </div>
+    </div>
+</div>
+<div class="content-body">
+    <div class="content-body__header">
+        <h1 class="title">{{ 'blog.new_article'|t }}</h1>
+    </div>
+    <div class="content-body__body">
+        {% if error %}
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                {% for item in error %}
+                    {{ item }} <br>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <form id="articleAdd" class="form-horizontal form_validator" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label class="col-md-2 control-label">Категория</label>
+                <div class="col-md-4 col-lg-3">
+                    <select name="category_id" data-width="100%">
+                        <option value="0">{{ 'system.category_zero_select'|t }}</option>
+                        {% for item in category %}
+                            <option value="{{ item.id }}"{{ request.category_id == item.id ? ' selected' : '' }}>{{ item.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Заголовок<span style="color: red;">*</span></label>
+                <div class="col-md-4 col-lg-3">
+                    <input type="text" name="name" value="{{ request.title ?: '' }}" class="form-control" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Алиас</label>
+                <div class="col-md-4 col-lg-3">
+                    <input type="text" name="alias" value="{{ request.alias ?: '' }}" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Мета заголовок</label>
+                <div class="col-md-4 col-lg-3">
+                    <input type="text" name="meta_title" value="{{ request.meta_title ?: '' }}" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Meta keywords</label>
+                <div class="col-md-4 col-lg-3">
+                    <input type="text" name="keywords" value="{{ request.keywords ?: '' }}" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Мeta description</label>
+                <div class="col-md-4 col-lg-3">
+                    <input type="text" name="description" value="{{ request.description ?: '' }}" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Анонс</label>
+                <div class="col-md-7">
+                    <textarea class="form-control" name="anons" rows="8">{{ request.anons ?: '' }}</textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Описание</label>
+                <div class="col-md-7">
+                    <textarea class="" name="body" rows="8">{{ request.body ?: '' }}</textarea>
+                </div>
+            </div>
+            <script src="/core/assets/ckeditor/ckeditor.js"></script>
+            <script>
+                $(document).ready(function () {
+                    CKEDITOR.replace( 'body', {});
+                });
+            </script>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Дата</label>
+                <div class="col-md-4 col-lg-3">
+                    <div class="input-group date datepicker">
+                        <input type="text" name="date" value="{{ request.date ? request.date : '' }}" class="form-control" />
+                        <span class="input-group-addon">
+                                                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                    </span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Изображение</label>
+                <div class="col-md-4 col-lg-3">
+                    <input id="inputFile" type="file" name="image" class="inputfile">
+                    <label for="inputFile"><i class="fa fa-upload fa-fw" aria-hidden="true"></i><span>Выберите файл…</span></label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-6">
+                    <div class="divider"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-4 col-lg-3">
+                    <button class="btn btn-green" type="sumbit">Отправить</button>
+                </div>
+            </div>
+            <input type="hidden" name="do" value="add">
+        </form>
+    </div>
+</div>

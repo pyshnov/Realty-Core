@@ -1,0 +1,7 @@
+type: module
+name: Системный модуль
+description: 'Отображает основные настройки сайта для администраторов.'
+author: Aleksandr Pyshnov
+version: '0.0.1 Alpha'
+
+required: true

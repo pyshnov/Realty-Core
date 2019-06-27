@@ -1,0 +1,3 @@
+services:
+    vk:
+        class: Pyshnov\user\User

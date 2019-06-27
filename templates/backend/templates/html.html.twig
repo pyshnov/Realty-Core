@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    {{ head|raw }}
+</head>
+<body>
+    <div id="sideBarLeft">
+        <ul class="nav metismenu">
+            <li class="nav-header">
+                <div class="logo-element">
+                    <a href="/">PyshnovRealtyCMS</a>
+                </div>
+                <div class="logo-element-min">
+                    <a href="/">PRC</a>
+                </div>
+            </li>
+            {% import _self as menus %}
+            {{ menus.menu_links(menu.admin, ' class="nav nav-second-level collapse"', 0, '') }}
+            {% macro menu_links(items, attributes, menu_level, aria_expanded) %}
+                {% import _self as menus %}
+                {% if items %}
+                    {% if menu_level > 0 %}
+                        <ul{{ attributes }}{{ aria_expanded }}>
+                    {% endif %}
+                    {% for item in items %}
+                        {% if item.enabled %}
+                            <li{{ item.attributes}}>
+                                <a href="{{ item.url }}"{{ item.a_attributes }}>{{ item.title }}</a>
+                                {% if item.below %}
+                                    {% set aria_expanded = item.attributes == ' class="active"' ? ' aria-expanded="true"' : ' aria-expanded="false"' %}
+                                    {{ menus.menu_links(item.below, attributes, menu_level + 1, aria_expanded) }}
+                                {% endif %}
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if menu_level > 0 %}
+                        </ul>
+                    {% endif %}
+                {% endif %}
+            {% endmacro %}
+        </ul>
+    </div>
+    <div id="wrapper">
+        <div class="navbar navbar-static-top"  role="navigation">
+            <a class="navbar-minimalize btn" href="#"><i class="fa fa-bars"></i> </a>
+            <ul class="nav navbar-top-links pull-right">
+                <li><a href="/" target="_blank"><i class="fa fa-eye"></i> Просмотр сайта</a></li>
+                <li>
+                    <a href="/logout">
+                        <i class="fa fa-sign-out"></i> Выход
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="right-sidebar-toggle">
+                        <i class="fa fa-cogs"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/help/">
+                        <i class="fa fa-question-circle"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="content {{ class_content }}">
+            {{ content }}
+        </div>
+        <div class="footer">
+            <div class="pull-right hidden-xs">
+                <strong>{{ disk_free_space }}</strong> из <strong>{{ disk_total_space }}</strong> свободно.
+            </div>
+            <div>
+                Copyright <strong>Aleksandr Pyshnov</strong> &copy; 2016 - {{ 'now'|date('Y') }}
+            </div>
+        </div>
+        {% include 'sidebar_right.html.twig' %}
+    </div>
+    {{ js.footer|raw }}
+</body>
+</html>

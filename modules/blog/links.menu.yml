@@ -1,0 +1,30 @@
+blog.admin:
+    enabled: true
+    title: Блог
+    route_name: blog.admin
+    parent: system.content
+    menu_name: admin
+blog.admin.article_add:
+    enabled: false
+    title: Добавить статью
+    route_name: blog.admin.article_add
+    parent: system.content
+    menu_name: admin
+blog.admin.article_edit:
+    enabled: false
+    title: ''
+    route_name: blog.admin.article_edit
+    parent: system.content
+    menu_name: admin
+blog.admin.category_add:
+    enabled: false
+    title: Добавить категорию
+    route_name: blog.admin.category_add
+    parent: system.content
+    menu_name: admin
+blog.admin.category_edit:
+    enabled: false
+    title: ''
+    route_name: blog.admin.category_edit
+    parent: system.content
+    menu_name: admin

@@ -1,0 +1,8 @@
+type: module
+name: Страницы
+description: 'Управление страницыми сайта.'
+author: Aleksandr Pyshnov
+version: '0.1'
+
+dependence:
+  - system

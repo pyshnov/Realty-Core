@@ -1,0 +1,55 @@
+data.admin:
+  path: '/admin/data/'
+  defaults:
+    _controller: '\Pyshnov\data\Controller\DataController::adminData'
+    _title: ' | Управление объявлениями'
+  requirements:
+    _access: 'admin, moderator'
+data.admin.complaint:
+  path: '/admin/complaint/'
+  defaults:
+    _controller: '\Pyshnov\data\Controller\DataController::adminComplaint'
+    _title: ' | Жалобы'
+  requirements:
+    _access: 'admin, moderator'
+data.admin.add:
+  path: '/admin/data/add/'
+  defaults:
+    _controller: '\Pyshnov\data\Controller\DataController::adminAdd'
+    _title: ' | Новое объявление'
+  requirements:
+    _access: 'admin, moderator'
+data.admin.edit:
+  path: '/admin/data/edit-{id}/'
+  defaults:
+    _controller: '\Pyshnov\data\Controller\DataController::adminEdit'
+    _title: ' | Редактирование объявления'
+  requirements:
+    id: '\d+'
+    _access: 'admin, moderator'
+data.admin.ajax:
+  path: '/admin/ajax/data/'
+  defaults:
+    _controller: '\Pyshnov\data\Ajax\DataAjax::runAction'
+  requirements:
+    _access: 'admin, moderator'
+data.dropzone.ajax:
+  path: '/ajax/data/dropzone/'
+  defaults:
+    _controller: '\Pyshnov\data\Ajax\Dopzone::runAction'
+data.ajax:
+  path: '/ajax/data/'
+  defaults:
+    _controller: '\Pyshnov\data\Ajax\DataAjax::runAction'
+data.favorites:
+  path: '/favorites/'
+  defaults:
+    _controller: '\Pyshnov\data\Controller\DataController::favorites'
+data.add:
+  path: '/add/'
+  defaults:
+    _controller: '\Pyshnov\data\Controller\DataController::add'
+data.map:
+  path: '/map/'
+  defaults:
+    _controller: '\Pyshnov\data\Controller\DataController::mapSearch'

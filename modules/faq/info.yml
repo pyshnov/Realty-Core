@@ -1,0 +1,5 @@
+type: module
+name: FAQ
+description: 'Вопрос ответ.'
+author: Aleksandr Pyshnov
+version: '0.0.1'

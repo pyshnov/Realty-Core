@@ -1,0 +1,114 @@
+<div class="content-header">
+    <div class="col-lg-12">
+        <h2>{{ 'system.extensions'|t }}</h2>
+        {{ breadcrumb }}
+    </div>
+</div>
+<div class="content-body">
+    <div class="content-body__header">
+        <h1 class="title">Управление расширениями</h1>
+    </div>
+    <div class="content-body__body">
+        {% for module in modules.core %}
+            <div class="item vote-item">
+                <div class="void-checkbox">
+                    {% if module.active is defined %}
+                        <div class="switch">
+                            <div class="onoffswitch">
+                                <input type="checkbox" name="{{ module.machine_name }}" class="onoffswitch-checkbox module-enable" id="{{ module.machine_name }}Check"{{ module.active ? ' checked' : '' }}{{ module.required ? ' disabled' : '' }}>
+                                <label class="onoffswitch-label" for="{{ module.machine_name }}Check">
+                                    <span class="onoffswitch-inner"></span>
+                                    <span class="onoffswitch-switch"></span>
+                                </label>
+                            </div>
+                        </div>
+                    {% else %}
+                        <a class="install-module" href="#" data-name="{{ module.machine_name }}">Установить</a>
+                    {% endif %}
+                </div>
+                <div class="void-body">
+                    <div class="item-detail-show vote-title">
+                        <i class="fa fa-angle-right"></i>
+                        {{ module.name }}
+                    </div>
+                    <div class="item-detail vote-detail">
+                        <div class="vote-description">
+                            {{ module.description }}
+                        </div>
+                        <div class="vote-info">
+                            <p><span>Машинное имя:</span> <i>{{ module.machine_name }}</i></p>
+                            <p><span>Автор:</span> <i>{{ module.author ? : '--' }}</i></p>
+                            <p><span>Версия:</span> <i>{{ module.version ? : '--' }}</i></p>
+                            {% if module.dependence is not empty %}
+                                <p><span>Требует:</span> <i>{{ module.dependence|join(', ') }}</i></p>
+                            {% endif %}
+                            <div class="vote-info-bottom">
+                                <a href="#"><i class="fa fa-info-circle fa-fw" aria-hidden="true"></i> Help</a>
+                                {% if module.active is defined  %}
+                                    {% if module.config %}
+                                        <a href="/admin/config/?tab={{ module.machine_name }}"><i class="fa fa-cogs fa-fw" aria-hidden="true"></i> Настройки</a>
+                                    {% endif %}
+                                    {% if module.required == false %}
+                                        <a class="module-remove" href="#" data-name="{{ module.machine_name }}"><i class="fa fa-trash fa-fw" aria-hidden="true"></i> Удалить</a>
+                                    {% endif %}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        {% if modules.user %}
+            <p>Пользовательские</p>
+            {% for module in modules.user %}
+                <div class="item vote-item">
+                    <div class="void-checkbox">
+                        {% if module.active is defined %}
+                            <div class="switch">
+                                <div class="onoffswitch">
+                                    <input type="checkbox" name="{{ module.machine_name }}" class="onoffswitch-checkbox  module-enable" id="{{ module.machine_name }}Check"{{ module.active ? ' checked' : '' }}{{ module.required ? ' disabled' : '' }}>
+                                    <label class="onoffswitch-label" for="{{ module.machine_name }}Check">
+                                        <span class="onoffswitch-inner"></span>
+                                        <span class="onoffswitch-switch"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        {% else %}
+                            <a class="install-module" href="#" data-name="{{ module.machine_name }}">Установить</a>
+                        {% endif %}
+                    </div>
+                    <div class="void-body">
+                        <div class="item-detail-show vote-title">
+                            <i class="fa fa-angle-right"></i>
+                            {{ module.name }}
+                        </div>
+                        <div class="item-detail vote-detail">
+                            <div class="vote-description">
+                                {{ module.description }}
+                            </div>
+                            <div class="vote-info">
+                                <p><span>Машинное имя:</span> <i>{{ module.machine_name }}</i></p>
+                                <p><span>Автор:</span> <i>{{ module.author ? : '--' }}</i></p>
+                                <p><span>Версия:</span> <i>{{ module.version ? : '--' }}</i></p>
+                                {% if module.dependence is not empty %}
+                                    <p><span>Требует:</span> <i>{{ module.dependence|join(', ') }}</i></p>
+                                {% endif %}
+                                <div class="vote-info-bottom">
+                                    <a href="#"><i class="fa fa-info-circle fa-fw" aria-hidden="true"></i> Help</a>
+                                    {% if module.active is defined  %}
+                                        {% if module.config %}
+                                            <a href="/admin/config/?tab={{ module.machine_name }}"><i class="fa fa-cogs fa-fw" aria-hidden="true"></i> Настройки</a>
+                                        {% endif %}
+                                        {% if module.required == false %}
+                                            <a href="#"><i class="fa fa-trash fa-fw" aria-hidden="true"></i> Удалить</a>
+                                        {% endif %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>

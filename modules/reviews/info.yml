@@ -1,0 +1,6 @@
+type: module
+name: Отзывы
+description: 'Отзывы о компании.'
+author: Aleksandr Pyshnov
+
+version: '0.0.1'

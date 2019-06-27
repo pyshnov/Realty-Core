@@ -1,0 +1,19 @@
+page.admin:
+    enabled: true
+    title: Страницы
+    route_name: page.admin
+    parent: system.content
+    cort: 0
+    menu_name: admin
+page.admin.edit:
+    enabled: false
+    title: Редактировать страницу
+    route_name: page.admin.edit
+    parent: system.content
+    menu_name: admin
+page.admin.add:
+    enabled: false
+    title: Новая страница
+    route_name: page.admin.add
+    parent: system.content
+    menu_name: admin

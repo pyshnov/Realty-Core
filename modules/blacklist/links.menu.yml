@@ -1,0 +1,6 @@
+blacklist.admin:
+    enabled: true
+    title: Антиагент
+    route_name: blacklist.admin
+    parent: data.admin
+    menu_name: admin

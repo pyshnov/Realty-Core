@@ -1,0 +1,59 @@
+<div class="content-header">
+    <div class="col-lg-9 col-md-8 col-sm-7">
+        <h2>{{ 'user.groups'|t }}</h2>
+        {{ breadcrumb }}
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-5">
+        <div class="right-btn text-right">
+            <div class="text-right">
+                <a href="/admin/groups/add/" class="btn btn-green">{{ 'user.group_add'|t }}</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content-body">
+    <div class="content-body__header">
+        <h1 class="title">{{ 'user.group_list'|t }}</h1>
+    </div>
+    <div class="content-body__body">
+        <div class="table-responsive">
+            {% if page.rows %}
+                <table id="groupList" class="table{{ pages|length > 2 ? ' table-striped table-hover' : '' }}">
+                    <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Название</th>
+                        <th>Алиас</th>
+                        <th>Действие</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for row in page.rows %}
+                        <tr>
+                            <td>{{ row.id }}</td>
+                            <td>{{ row.name }}</td>
+                            <td>{{ row.alias }}</td>
+                            <td>
+                                <div class="btn-group-table">
+                                    <a href="/admin/groups/edit-{{ row.id }}/" title="Редактировать" class="btn btn-table">
+                                        <i class="fa fa-pencil"></i> </a>
+                                    {% if row.id > 5 %}
+                                        <a href="#" data-id="{{ row.id }}" title="Удалить" class="btn btn-table page-remove" disabled>
+                                            <i class="fa fa-trash-o"></i></a>
+                                    {% endif %}
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                {% if pager %}
+                    <div class="divider"></div>
+                    {{ pager }}
+                {% endif %}
+            {% else %}
+                Список станиц пуст
+            {% endif %}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,6 @@
+services:
+    city:
+        class: Pyshnov\location\City
+    location:
+        class: Pyshnov\location\Location
+        arguments: ['@config', '@city']

@@ -1,0 +1,41 @@
+<div class="content-header">
+    <div class="col-lg-12">
+        <h2>Жалобы</h2>
+        {{ breadcrumb }}
+    </div>
+</div>
+<div class="content-body">
+    <div class="content-body__header">
+        <h1 class="title">Жалобы на объекты</h1>
+    </div>
+    <div class="content-body__body">
+        {% if complaint %}
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>User_id</th>
+                    <th>id объявления</th>
+                    <th>Жалоба</th>
+                    <th>Действия</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for item in complaint %}
+                    <tr>
+                        <td>{{ item.id }}</td>
+                        <td>{{ item.user_id }}</td>
+                        <td>{{ item.data_id }}</td>
+                        <td>{{ item.reason }}</td>
+                        <td>
+                            <a href="#" title="Удалить" class="btn btn-table delete_complaint" data-id="{{ item.id }}" data-toggle="tooltip" data-placement="right"> <i class="fa fa-trash-o" aria-hidden="true"></i> </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            Жалобы отстутствуют
+        {% endif %}
+    </div>
+</div>

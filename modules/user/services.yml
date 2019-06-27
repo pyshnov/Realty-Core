@@ -1,0 +1,10 @@
+services:
+    user:
+        class: Pyshnov\user\User
+    user.auth:
+        class: Pyshnov\user\UserAuth
+        arguments: ['@user']
+        calls:
+            - [setContainer, ['@service_container']]
+    user.action:
+        class: Pyshnov\user\UserAction

@@ -1,0 +1,9 @@
+type: module
+name: SocialAuther
+description: 'Аутентификация через популярные социальные сети и сервисы'
+author: Aleksandr Pyshnov
+version: '0.0.1'
+
+required: false
+dependence:
+  - user

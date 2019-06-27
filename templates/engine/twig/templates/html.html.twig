@@ -1,0 +1,32 @@
+{#
+/**
+* {{ head|raw }}
+* {{ css|raw }}
+* {{ js.head|raw }}
+* {{ js.footer|raw }}
+* {{ is_smartphone }}
+* {{ is_tablet }}
+* {{ is_desktop }}
+* {{ is_debug }}
+* {{ charset }}
+* {{ is_admin }}
+* {{ is_authenticated }}
+* {{ is_anonymous }}
+* {{ key }}
+* {{ user_ip }}
+*
+*
+*/
+#}
+<!doctype html>
+<html lang="ru">
+<head>
+    {{ head|raw }}
+</head>
+<body>
+    <div class="wrapper">
+        {{ content }}
+    </div>
+{{ js.footer|raw }}
+</body>
+</html>

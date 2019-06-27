@@ -1,0 +1,13 @@
+config.admin:
+    path: '/admin/config/'
+    defaults:
+        _controller: '\Pyshnov\config\Controller\ConfigController::main'
+        _title: ' | Настройки'
+    requirements:
+        _access: 'admin'
+config.admin.ajax:
+    path: '/admin/ajax/config/'
+    defaults:
+        _controller: '\Pyshnov\config\Ajax\ConfigAjax::runAction'
+    requirements:
+        _access: 'admin'

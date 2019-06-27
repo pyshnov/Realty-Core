@@ -1,0 +1,20 @@
+reviews.admin:
+  path: '/admin/reviews/'
+  defaults:
+    _controller: '\Pyshnov\reviews\Controller\ReviewsController::adminReviews'
+  requirements:
+    _access_permissions: 'admin, moderator'
+reviews.admin.edit:
+  path: '/admin/reviews/edit-{id}/'
+  defaults:
+    _controller: '\Pyshnov\reviews\Controller\ReviewsController::adminReviewEdit'
+  requirements:
+    _access_permissions: 'admin, moderator'
+reviews:
+  path: '/reviews/'
+  defaults:
+    _controller: '\Pyshnov\reviews\Controller\ReviewsController::reviews'
+reviews.ajax:
+    path: '/ajax/reviews/'
+    defaults:
+        _controller: '\Pyshnov\reviews\Ajax\AjaxAction::runAction'

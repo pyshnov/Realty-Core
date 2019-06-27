@@ -1,0 +1,33 @@
+data.admin:
+    enabled: true
+    title: '<i class="fa fa-newspaper-o"></i><span>Объявления</span>'
+    url: '#'
+    cort: 1
+    menu_name: admin
+data.admin_data:
+    enabled: true
+    parent: data.admin
+    title: 'Все объявления'
+    route_name: data.admin
+    cort: 1
+    menu_name: admin
+data.admin_add:
+    enabled: true
+    parent: data.admin
+    title: 'Новое объявление'
+    route_name: data.admin.add
+    cort: 2
+    menu_name: admin
+data.admin_data_edit:
+    enabled: false
+    parent: data.admin
+    title: 'Редактировать объявление'
+    route_name: data.admin.edit
+    menu_name: admin
+data.complaint:
+    enabled: true
+    parent: data.admin
+    title: 'Жалобы'
+    route_name: data.admin.complaint
+    cort: 3
+    menu_name: admin

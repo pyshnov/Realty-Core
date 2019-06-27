@@ -1,0 +1,12 @@
+.lock-screen {
+    text-align: center;
+    background-color: #f3f3f4;
+    color: #d9d9d9;
+    font-size: 18px;
+    padding-top: 150px;
+}
+.lock-screen span {
+    display: block;
+    font-size: 40px;
+    font-weight: 600;
+}

@@ -1,0 +1,48 @@
+.btn {
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+
+.btn-green {
+  .button-variant(#fff; #1ab394; #1ab394);
+
+  &.btn-outline {
+    color: #1ab394;
+
+    &:hover {
+      color: #fff;
+    }
+  }
+}
+
+.btn-outline {
+  color: inherit;
+  background-color: transparent;
+  transition: all .5s;
+}
+
+.btn-group {
+  .btn + .btn,
+  .btn + .btn-group,
+  .btn-group + .btn,
+  .btn-group + .btn-group,
+  .btn-group > .btn {
+    margin-left: 0;
+    border-left-width: 0;
+  }
+}
+
+.btn-table {
+  .button-variant(@btn-default-color; transparent; transparent);
+  font-size: 14px;
+  border-radius: 50%;
+  padding: 4px 10px;
+  line-height: 1.5;
+}
+
+.btn-group-table {
+  display: table;
+  .btn-table {
+    display: table-cell;
+  }
+}

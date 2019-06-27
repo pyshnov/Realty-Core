@@ -1,0 +1,22 @@
+data.admin:
+  js:
+    js/data.admin.js: {}
+data.admin.edit:
+  js:
+    js/bootstrap-datepicker/moment/moment.min.js: {}
+    js/bootstrap-datepicker/moment/moment-with-locales.min.js: {}
+    js/bootstrap-datepicker/js/bootstrap-datetimepicker.min.js: {}
+    /core/assets/validate/validate.min.js: {}
+    /core/assets/typeahead/bootstrap3-typeahead.min.js: {}
+    js/data.js: {}
+  import:
+    - data.admin
+data.admin.add:
+  import:
+    - data.admin.edit
+data.admin.complaint:
+  js:
+    js/complaint.js: {}
+user.data.edit:
+  js:
+    /core/assets/bootbox/bootbox.min.js: {}

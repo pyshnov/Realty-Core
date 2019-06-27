@@ -1,0 +1,14 @@
+<div class="content">
+    {{ breadcrumb }}
+    {{ title }}
+    <div class='wrapper-faq'>
+        <div class='content-faq'>
+            {% for row in page.rows %}
+                <div class='faq-item'>
+                    <div class="question" data-question-id="{{ row.id }}">{{ row.question }}</div>
+                    <div class="answer" data-answer-id="{{ row.id }}"><p>{{ row.answer }}</p></div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

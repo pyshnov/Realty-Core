@@ -1,0 +1,3 @@
+blacklist.admin:
+  js:
+    js/blacklist.js: {}

@@ -1,0 +1,6 @@
+config.admin:
+    enabled: true
+    title: '<i class="fa fa-cogs"></i><span>Настройки</span>'
+    route_name: config.admin
+    cort: 5
+    menu_name: admin

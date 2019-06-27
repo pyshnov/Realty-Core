@@ -1,0 +1,5 @@
+type: module
+name: Антиагент
+description: 'Модуль для управления черным списком номеров телефона.'
+author: Aleksandr Pyshnov
+version: '0.1'

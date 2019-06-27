@@ -1,0 +1,84 @@
+<div class="content-header">
+    <div class="col-lg-9 col-md-8 col-sm-7">
+        <h2>{{ 'page.pages'|t }}</h2>
+        {{ breadcrumb }}
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-5">
+        <div class="right-btn text-right">
+            <div class="text-right">
+                <a href="/admin/page/add/" class="btn btn-green">{{ 'page.btn_add'|t }}</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content-body">
+    <div class="content-body__header">
+        <h1 class="title">{{ 'page.edit_page'|t }}</h1>
+    </div>
+    <div class="content-body__body">
+        {% if error %}
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                {% for item in error %}
+                    {{ item }} <br>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <form id="pageAdd" class="form-horizontal" method="post">
+            <div class="form-group">
+                <label class="col-md-2 control-label">Заголовок<span style="color: red;">*</span></label>
+                <div class="col-md-4 col-lg-3">
+                    <input type="text" name="title" value="{{ request.title ?: page.title }}" class="form-control" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">URL</label>
+                <div class="col-md-4 col-lg-3">
+                    <input type="text" name="alias" value="{{ request.alias ?: page.alias }}" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Мета заголовок</label>
+                <div class="col-md-4 col-lg-3">
+                    <input type="text" name="meta_title" value="{{ request.meta_title ?: page.meta_title }}" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Meta keywords</label>
+                <div class="col-md-4 col-lg-3">
+                    <input type="text" name="keywords" value="{{ request.keywords ?: page.meta_keywords }}" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Мeta description</label>
+                <div class="col-md-4 col-lg-3">
+                    <input type="text" name="description" value="{{ request.description ?: page.meta_description }}" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Описание</label>
+                <div class="col-md-6">
+                    <textarea class="form-control" name="body" rows="8">{{ request.body ?: page.body }}</textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Шаблон</label>
+                <div class="col-md-4 col-lg-3">
+                    <input type="text" name="theme" value="{{ request.theme ?: page.theme }}" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-6">
+                    <div class="divider"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-4 col-lg-3">
+                    <button class="btn btn-green" type="sumbit">Отправить</button>
+                </div>
+            </div>
+            <input type="hidden" name="do" value="edit">
+        </form>
+    </div>
+</div>

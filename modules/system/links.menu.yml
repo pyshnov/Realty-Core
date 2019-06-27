@@ -1,0 +1,59 @@
+system.home:
+    enabled: true
+    title: '<i class="fa fa-home"></i><span>Главная</span>'
+    route_name: admin
+    cort: 0
+    menu_name: admin
+system.content:
+    enabled: true
+    title: '<i class="fa fa-bar-chart-o"></i><span>Конент</span>'
+    url: '#'
+    cort: 2
+    menu_name: admin
+system.modules:
+    enabled: true
+    title: '<i class="fa fa-puzzle-piece"></i><span>Расширения</span>'
+    route_name: system.modules
+    cort: 4
+    menu_name: admin
+system.reference:
+    enabled: true
+    title: '<i class="fa fa-globe"></i><span>Справочник</span>'
+    url: '#'
+    cort: 3
+    menu_name: admin
+system.reference_country:
+    enabled: true
+    parent: system.reference
+    title: 'Страны'
+    url: '/admin/reference/country/'
+    cort: 1
+    menu_name: admin
+system.reference_region:
+    enabled: true
+    parent: system.reference
+    title: 'Регионы'
+    url: '/admin/reference/region/'
+    cort: 2
+    menu_name: admin
+system.reference_city:
+    enabled: true
+    parent: system.reference
+    title: 'Города'
+    url: '/admin/reference/city/'
+    cort: 3
+    menu_name: admin
+system.reference_district:
+    enabled: true
+    parent: system.reference
+    title: 'Районы'
+    url: '/admin/reference/district/'
+    cort: 4
+    menu_name: admin
+system.reference_metro:
+    enabled: true
+    parent: system.reference
+    title: 'Метро'
+    url: '/admin/reference/metro/'
+    cort: 5
+    menu_name: admin

@@ -1,0 +1,10 @@
+type: module
+name: User
+description: 'Модуль управления пользователями'
+author: Aleksandr Pyshnov
+version: '0.0.1 Alpha'
+
+required: true
+dependence:
+  - system
+  - data

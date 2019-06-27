@@ -1,0 +1,38 @@
+parameters:
+    system.reference:
+        country:
+            name:
+                - Страна
+                - Стран
+                - Страну
+            dependence: false
+        region:
+            name:
+                - Регион
+                - Регионов
+                - Регион
+            dependence: country
+        city:
+            name:
+                - Город
+                - Городов
+                - Город
+            dependence: region
+        district:
+            name:
+                - Район
+                - Районов
+                - Район
+            dependence: city
+        metro:
+            name:
+                - 'Метро'
+                - 'Метро'
+                - 'Метро'
+            dependence: city
+        street:
+            name: Улицы
+            dependence: city
+services:
+    breadcrumb:
+        class: Pyshnov\system\Plugin\Breadcrumb\Breadcrumb

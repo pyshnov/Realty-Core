@@ -1,0 +1,93 @@
+<div class="content-header">
+    <div class="col-lg-9 col-md-8 col-sm-7">
+        <h2>Вопрос-Ответ</h2>
+        {{ breadcrumb }}
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-5">
+        <div class="right-btn text-right">
+            <a href="#" class="btn btn-green" data-toggle="modal" data-target="#faqModalAdd">Добавить вопрос</a>
+        </div>
+    </div>
+</div>
+<div class="content-body">
+    <div class="content-body__header">
+        <h1 class="title">Редактировать вопрос</h1>
+    </div>
+    <div class="content-body__body">
+        <form class="form-horizontal form_validator" method="post">
+            <div class="form-group">
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        <label>
+                            <input name="active" type="checkbox" value="1"{{ faq.active ? ' checked' : '' }}>
+                            <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+                            Опубликовать
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-4">
+                    <input placeholder="Имя автора" class="form-control" type="text" name="author" value="{{ faq.author }}">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-4">
+                    <input placeholder="Email автора" class="form-control" type="text" name="author_email" value="{{ faq.author_email }}">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-6">
+                    <textarea name="question" class="form-control" cols="6" placeholder="Вопрос" required>{{ faq.question }}</textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-6">
+                    <textarea name="answer" class="form-control" cols="6" placeholder="Ответ на вопрос">{{ faq.answer }}</textarea>
+                </div>
+            </div>
+            <button type="sumbit" class="btn btn-green">Сохранить</button>
+            <input type="hidden" name="do" value="edit">
+        </form>
+    </div>
+</div>
+<div class="modal inmodal" id="faqModalAdd" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content animated bounceInRight">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <i class="fa fa-pencil modal-icon"></i>
+                <h4 class="modal-title">Новый вопрос</h4>
+            </div>
+            <form id="ajaxFaqAdd">
+                <div class="modal-body">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input placeholder="Имя автора" class="form-control" type="text" name="author">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input placeholder="Email автора" class="form-control" type="text" name="author_email">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <textarea name="question" class="form-control" cols="4" placeholder="Вопрос" required></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <textarea name="answer" class="form-control" cols="4" placeholder="Ответ на вопрос"></textarea>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Отменить</button>
+                    <button type="sumbit" class="btn btn-green">Сохранить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

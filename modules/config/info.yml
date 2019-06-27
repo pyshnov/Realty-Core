@@ -1,0 +1,7 @@
+type: module
+name: Диспетчер конфигураций
+description: 'Позволяет администраторам управлять изменениями конфигурации.'
+author: Aleksandr Pyshnov
+version: '0.0.1'
+
+required: true

@@ -1,0 +1,12 @@
+faq.admin:
+    enabled: true
+    title: Вопрос-Ответ
+    route_name: faq.admin
+    parent: system.content
+    menu_name: admin
+faq.admin.edit:
+    enabled: false
+    title: Редактировать вопрос
+    route_name: faq.admin.edit
+    parent: system.content
+    menu_name: admin

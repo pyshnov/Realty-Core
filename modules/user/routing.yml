@@ -1,0 +1,62 @@
+user.admin:
+    path: '/admin/users/'
+    defaults:
+        _controller: '\Pyshnov\user\Controller\UserController::adminUsers'
+    requirements:
+        _access: 'admin'
+user.admin.groups:
+    path: '/admin/groups/'
+    defaults:
+        _controller: '\Pyshnov\user\Controller\UserController::adminGroups'
+    requirements:
+        _access: 'admin'
+user.admin.group_add:
+    path: '/admin/groups/add/'
+    defaults:
+        _controller: '\Pyshnov\user\Controller\UserController::adminGroupAdd'
+    requirements:
+        _access: 'admin'
+user.admin.group_edit:
+    path: '/admin/groups/edit/'
+    defaults:
+        _controller: '\Pyshnov\user\Controller\UserController::adminGroupEdit'
+    requirements:
+        _access: 'admin'
+user.signin:
+    path: '/signin/'
+    defaults:
+        _controller: '\Pyshnov\user\Controller\UserController::signIn'
+user.register:
+    path: '/register/'
+    defaults:
+        _controller: '\Pyshnov\user\Controller\UserController::register'
+user.restore:
+    path: '/restore/'
+    defaults:
+        _controller: '\Pyshnov\user\Controller\UserController::restore'
+logout:
+    path: '/logout/'
+    defaults:
+        _controller: '\Pyshnov\user\Controller\UserController::logout'
+user.profile:
+    path: '/account/profile/'
+    defaults:
+        _controller: '\Pyshnov\user\Controller\UserController::accountProfile'
+user.data:
+    path: '/account/data/'
+    defaults:
+        _controller: '\Pyshnov\user\Controller\UserController::accountData'
+user.data.edit:
+  path: '/account/data_edit-{id}/'
+  defaults:
+    _controller: '\Pyshnov\user\Controller\UserController::accountDataEdit'
+  requirements:
+    id: '\d+'
+user.ajax:
+    path: '/ajax/user/'
+    defaults:
+        _controller: 'Pyshnov\user\Ajax\UserAjax::runAction'
+user.ajax.signin:
+    path: '/ajax/signin/'
+    defaults:
+        _controller: 'Pyshnov\user\Ajax\UserAjax::signIn'

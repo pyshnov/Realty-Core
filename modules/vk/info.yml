@@ -1,0 +1,9 @@
+type: module
+name: Vk
+description: 'Модуль Vk'
+author: Aleksandr Pyshnov
+version: '0.0.1 Alpha'
+
+dependence:
+  - system
+  - data

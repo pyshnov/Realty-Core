@@ -1,0 +1,8 @@
+type: module
+name: Новости
+description: 'Новости и акции для сайта.'
+author: Aleksandr Pyshnov
+version: '0.0.1 Alpha'
+
+dependence:
+  - system

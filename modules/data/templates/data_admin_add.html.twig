@@ -1,0 +1,444 @@
+<div class="content-header">
+    <div class="col-lg-9 col-md-8 col-sm-7">
+        <h2>Объявления</h2>
+        {{ breadcrumb }}
+    </div>
+</div>
+<div class="content-body">
+    <div class="content-body__header">
+        <h1 class="title">Новое объявления</h1>
+        <small>Добавление нового объявления</small>
+    </div>
+    <div class="content-body__body">
+        {% if error %}
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                {% for item in error %}
+                    {{ item }} <br>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <form id="dataForm" class="form-horizontal" enctype="multipart/form-data" method="post">
+            <div class="tabs-container">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a aria-expanded="false" data-toggle="tab" href="#home">Основные</a></li>
+                    <li><a aria-expanded="false" data-toggle="tab" href="#seo">SEO</a></li>
+                    <li><a aria-expanded="false" data-toggle="tab" href="#status">Статус</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div id="home" class="tab-pane active">
+                        <div class="panel-body">
+
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Пользователь</label>
+                                <div class="col-md-4 col-lg-3">
+                                    <select id="userSelect" class="form-control" name="user_id" data-live-search="true" title="-- Выберите пользователя --">
+                                        <option value="{{ user.user_id }}" selected>
+                                            {{ user.login ? user.login : user.email }}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Дата подачи</label>
+                                <div class="col-md-4 col-lg-3">
+                                    <div class="input-group date datepicker">
+                                        <input type="text" name="date_added" value="{{ object.date_added }}"
+                                               class="form-control"/>
+                                        <span class="input-group-addon">
+                                                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                    </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Опубликовать</label>
+                                <div class="col-md-4 col-lg-3">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="active" value="1">
+                                            <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Тип<span style="color: red;">*</span></label>
+                                <div class="col-md-4 col-lg-3">
+                                    {{ category }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Город<span style="color: red;">*</span></label>
+                                <div class="col-md-4 col-lg-3">
+                                    <select name="city_id" id="cityId" data-refresh="district,metro" data-width="100%"
+                                            required data-error-msg="Город обязателен к заполнению">
+                                        <option value="{{ city.getId() }}" selected>{{ city.getName() }}</option>
+                                        <option data-divider="true"></option>
+                                        <option value="0">Выбрать другой</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group" id="formDistrict">
+                                <label class="col-md-2 control-label">Район</label>
+                                <div class="col-md-4 col-lg-3">
+                                    <div id="selectDistrict" data-value="{{ request.district is defined ? request.district : 0 }}"></div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="formMetro">
+                                <label class="col-md-2 control-label">Метро</label>
+                                <div class="col-md-4 col-lg-3">
+                                    <div id="selectMetro" data-value="{{ request.metro is defined ? request.metro : 0 }}"></div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="timeMetro">
+                                <label class="col-md-2 control-label">Удаленность от метро</label>
+                                <div class="col-md-4 col-lg-3">
+                                    <div class="input-group">
+                                        <input type="text" name="time_metro" value="{{ object.time_metro }}"
+                                               class="form-control">
+                                        <div class="input-group-btn">
+                                            <select name="how_to_get">
+                                                <option value="0">Пешком</option>
+                                                <option value="1">Транспортом</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Временный адресс</label>
+                                <div class="col-md-4 col-lg-3">
+                                    <input id="address" type="text" name="address" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Улица<span style="color: red;">*</span></label>
+                                <div class="col-md-4 col-lg-3">
+                                    <input id="street" type="text" name="street" value=""
+                                           autocomplete="off" class="form-control typeahead" required >
+                                    <input type="hidden" name="street_id" value="0">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Номер дома</label>
+                                <div class="col-md-4 col-lg-3">
+                                    <input type="text" name="number" value="" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Описание</label>
+                                <div class="col-md-6">
+                                    <textarea class="form-control" name="text" rows="8"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Цена<span style="color: red;">*</span></label>
+                                <div class="col-md-4 col-lg-3">
+                                    <div class="input-group">
+                                        <input class="form-control price-mask" type="text" name="price"
+                                               value="" required data-error-msg="Укажите пожалуйста цену">
+                                        <div class="input-group-btn">
+                                            <span class="btn btn-default dis"><i class="fa fa-rub"
+                                                                                 aria-hidden="true"></i></span>
+                                            <select name="lease_period" class="">
+                                                <option value="1">Вмесяц</option>
+                                                <option value="2">Сутки</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-6">
+                                    <div class="divider horizontal">Фото объекта</div>
+                                    <p>Первая фотография будет отображаться в результатах поиска, выберите наиболее
+                                        удачную. Максимальный размер фотографии — 10 МБ, не более 20 файлов.</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-6">
+                                    {{ data_form.getDropzone() }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input name="avito_crop" type="checkbox" value="1">
+                                            <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+                                            Обрезать (если с avito)
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-6">
+                                    <div class="divider horizontal">Параметры квартиры</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Этаж и этажность</label>
+                                <div class="col-md-4 col-lg-3">
+                                    <div class="input-group-spacer">
+                                        <input class="form-control" type="text" name="floor" value="">
+                                        <div class="input-group-btn">
+                                            <span class="btn">/</span>
+                                        </div>
+                                        <input class="form-control" type="text" name="floor_count" value="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="roomCount" class="form-group refresh_topic" data-show="2,6" style="display: none;">
+                                <label class="col-md-2 control-label">Комнат в квартире<span
+                                            style="color: red;">*</span></label>
+                                <div class="col-md-4 col-lg-3">
+                                    <input name="room_count" value="" type="text" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Общая площадь</label>
+                                <div class="col-md-4 col-lg-3">
+                                    <div class="input-group">
+                                        <input type="text" name="square_all" value="" class="form-control">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button">м²</button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="squareLive" class="form-group refresh_topic" data-show="3,4,5,6"
+                                 style="display: none;">
+                                <label class="col-md-2 control-label">Жилая площадь</label>
+                                <div class="col-md-4 col-lg-3">
+                                    <div class="input-group">
+                                        <input type="text" name="square_live" value="" class="form-control">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button">м²</button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="squareRooms" class="form-group refresh_topic" data-show="2,3,4,5,6"
+                                 style="display: none;">
+                                <label class="col-md-2 control-label square_rooms">Площадь комнат</label>
+                                <div class="col-md-4 col-lg-3">
+                                    <div class="input-group">
+                                        <input type="text" name="square_rooms" value="" class="form-control">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button">м²</button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Площадь кухни</label>
+                                <div class="col-md-4 col-lg-3">
+                                    <div class="input-group">
+                                        <input type="text" name="square_kitchen" value="" class="form-control">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button">м²</button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Санузел</label>
+                                <div class="col-md-4 col-lg-3">
+                                    <select name="bathroom" class="form-control">
+                                        <option value="0">Не указано</option>
+                                        <option value="1">Совмещенный</option>
+                                        <option value="2">Раздельный</option>
+                                        <option value="3">2 и более</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input name="furniture" type="checkbox" value="1">
+                                            <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+                                            Мебель
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input name="refrigerator" type="checkbox" value="1">
+                                            <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+                                            Холодильник
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input name="washing_machine" type="checkbox" value="1">
+                                            <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+                                            Стиральная машина
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input name="television" type="checkbox" value="1">
+                                            <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+                                            Телевизор
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input name="is_telephone" type="checkbox" value="1">
+                                            <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+                                            Телефон
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input name="internet" type="checkbox" value="1">
+                                            <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+                                            Интернет
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input name="children" type="checkbox" value="1">
+                                            <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+                                            Можно с детьми
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input name="animal" type="checkbox" value="1">
+                                            <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+                                            Можно с животными
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-6">
+                                    <div class="divider horizontal">Информация о продавце</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Имя</label>
+                                <div class="col-md-4 col-lg-3">
+                                    <input name="fio" value="" type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Email продавца</label>
+                                <div class="col-md-4 col-lg-3">
+                                    <input name="email" value="" type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Номер телефона<span
+                                            style="color: red;">*</span></label>
+                                <div class="col-md-4 col-lg-3">
+                                    <input id="phone" name="phone" type="text" class="form-control phone-mask"
+                                           value="" required
+                                           data-error-msg="Укажите пожалуйста номер телефона">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="seo" class="tab-pane">
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Метатег title</label>
+                                <div class="col-md-4 col-lg-3">
+                                    <input type="text" name="meta_title" value=""
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Описание (description)</label>
+                                <div class="col-md-5">
+                                    <textarea name="meta_description" class="form-control"
+                                              rows="4"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Ключевые слова (метатеги keywords)</label>
+                                <div class="col-md-5">
+                                    <textarea name="meta_keywords" class="form-control"
+                                              rows="4"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="status" class="tab-pane">
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Статус</label>
+                                <div class="col-md-4 col-lg-3">
+                                    <select class="form-control" name="status_data" data-container="body">
+                                        <option value="1">Активен</option>
+                                        <option value="2">Ожидаетмодерации</option>
+                                        <option value="3">Снято спубликации</option>
+                                        <option value="4">Срокразмещения истек</option>
+                                        <option value="5">Отказано</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Причина отказа</label>
+                                <div class="col-md-4 col-lg-3">
+                                    <input type="text" name="reason_refusal" value="" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-6">
+                    <div class="divider"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-4 col-lg-3">
+                    <button class="btn btn-green" type="sumbit">Отправить</button>
+                </div>
+            </div>
+            <input type="hidden" name="key" value="{{ key }}">
+            <input type="hidden" name="do" value="add">
+        </form>
+
+
+    </div>
+    <div class="content-body__footer">
+        <div class="text-muted small">
+            Поля отмеченные <span style="color: red;">*</span> обязательные к заполнению.
+        </div>
+
+    </div>
+</div>
+{% include 'location_modal.html.twig' %}

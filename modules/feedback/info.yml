@@ -1,0 +1,7 @@
+type: module
+name: Feedback
+description: 'Позволяет использовать контактные формы для отправки сообщений'
+author: Aleksandr Pyshnov
+version: '0.0.1 Alpha'
+
+required: true

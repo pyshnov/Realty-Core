@@ -1,0 +1,9 @@
+type: module
+name: Web формы
+description: 'Компонент Form позволяет проверять данные, приходящие от пользователя, отображать компоненты формы, а также выполнять пост-обработку этих данных.'
+author: Aleksandr Pyshnov
+version: '0.0.1'
+
+dependence:
+  - system
+required: true

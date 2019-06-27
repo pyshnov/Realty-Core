@@ -1,0 +1,4 @@
+news.list:
+  path: '/news/'
+  defaults:
+    _controller: '\Pyshnov\news\Controller\NewsController::newsList'

@@ -1,0 +1,10 @@
+type: module
+name: Управление объектами
+description: 'Управление обектами в базе.'
+author: Aleksandr Pyshnov
+version: '0.0.1 Alpha'
+
+required: true
+dependence:
+  - system
+  - user

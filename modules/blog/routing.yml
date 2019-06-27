@@ -1,0 +1,47 @@
+blog.admin:
+    path: '/admin/blog/'
+    defaults:
+        _controller: '\Pyshnov\blog\Controller\BlogController::adminBlog'
+    requirements:
+        _access: 'admin, moderator'
+blog.admin.article_add:
+    path: '/admin/blog/article_add/'
+    defaults:
+        _controller: '\Pyshnov\blog\Controller\BlogController::adminArticleAdd'
+    requirements:
+        _access: 'admin, moderator'
+blog.admin.article_edit:
+    path: '/admin/blog/edit-{id}/'
+    defaults:
+        _controller: '\Pyshnov\blog\Controller\BlogController::adminArticleEdit'
+    requirements:
+        id: '\d+'
+        _access: 'admin, moderator'
+blog.admin.category_add:
+    path: '/admin/blog/category_add/'
+    defaults:
+        _controller: '\Pyshnov\blog\Controller\BlogController::adminCategoryAdd'
+    requirements:
+        _access: 'admin, moderator'
+blog.admin.category_edit:
+    path: '/admin/blog/category_edit-{id}/'
+    defaults:
+        _controller: '\Pyshnov\blog\Controller\BlogController::adminCategoryEdit'
+    requirements:
+        id: '\d+'
+        _access: 'admin, moderator'
+blog.admin.ajax:
+    path: '/admin/ajax/blog/'
+    defaults:
+        _controller: '\Pyshnov\blog\Ajax\BlogAjax::runAction'
+    requirements:
+        _access: 'admin, moderator'
+blog.ajax:
+    path: '/ajax/blog/'
+    defaults:
+        _controller: '\Pyshnov\blog\Ajax\BlogAjax::runAction'
+    requirements:
+blog:
+    path: '/blog/'
+    defaults:
+        _controller: '\Pyshnov\blog\Controller\BlogController::blog'

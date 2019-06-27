@@ -1,0 +1,63 @@
+parameters:
+    system_locales:
+        - 'ru'
+        - 'en'
+    twig.config:
+        debug: "%kernel.debug%"
+        auto_reload: null
+        cache: true
+        autoescape: false
+services:
+    theme_handler:
+        class: Pyshnov\Core\Template\ThemeHandler
+        arguments: ['%kernel.root_dir%', '@info_parser', '@kernel']
+    config:
+        class: Pyshnov\Core\Config\Config
+        arguments: ['%kernel.root_dir%','@theme_handler']
+    event_dispatcher:
+        class: Symfony\Component\EventDispatcher\EventDispatcher
+    controller_resolver:
+        class: Pyshnov\Core\Controller\ControllerResolver
+    request_stack:
+        class: Symfony\Component\HttpFoundation\RequestStack
+    http_kernel:
+        class: Symfony\Component\HttpKernel\HttpKernel
+        arguments: ['@event_dispatcher', '@controller_resolver', '@request_stack']
+    router:
+        class: Pyshnov\Core\Routing\Router
+        arguments: ['%kernel.root_dir%', '%kernel.route_files%', '%kernel.cache_dir%']
+        calls:
+            - [setContainer, ['@service_container']]
+    route_match:
+        class: Pyshnov\Core\Routing\RouteMatch
+    session:
+        class: Pyshnov\Core\Session\Session
+    twig:
+        class: Pyshnov\Core\Template\TwigEnvironment
+        arguments: ['%kernel.root_dir%', '%kernel.cache_dir%', '@twig.loader', '%twig.config%', '@twig.extension']
+    twig.loader:
+        class: Pyshnov\Core\Template\ThemeLoader
+        arguments: ['%kernel.root_dir%', '@module_handler', '@config']
+    template:
+        class: Pyshnov\Core\Template\Template
+        arguments: ['%kernel.root_dir%', '@theme_handler', '@twig']
+        calls:
+            - [setContainer, ['@service_container']]
+    info_parser:
+        class: Pyshnov\Core\Extension\InfoParser
+    twig.extension:
+        class: Pyshnov\Core\Template\TwigExtension
+    module_handler:
+        class: Pyshnov\Core\Module\ModuleHandler
+        arguments: ['%kernel.root_dir%', '@info_parser', '%kernel.modules%']
+    language:
+        class: Pyshnov\Core\Language\Language
+        arguments: ['%kernel.root_dir%', '%system_locales%', '@request_stack']
+    menu_link:
+        class: Pyshnov\Core\Menu\MenuLink
+        arguments: ['%kernel.root_dir%', '@module_handler']
+    error_massage:
+        class: Pyshnov\Core\Template\ErrorMessage
+    mail:
+        class: Pyshnov\Core\Mail\Mail
+

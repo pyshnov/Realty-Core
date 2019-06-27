@@ -1,0 +1,58 @@
+<div class="content-header">
+    <div class="col-lg-9 col-md-8 col-sm-7">
+        <h2>{{ 'page.pages'|t }}</h2>
+        {{ breadcrumb }}
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-5">
+        <div class="right-btn text-right">
+            <div class="text-right">
+                <a href="/admin/page/add/" class="btn btn-green">{{ 'page.btn_add'|t }}</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content-body">
+    <div class="content-body__header">
+        <h1 class="title">{{ 'page.static_page'|t }}</h1>
+        <small>Управление статическими страницами</small>
+    </div>
+    <div class="content-body__body">
+        <div class="table-responsive">
+            {% if pages %}
+                <table id="pageList" class="table{{ pages|length > 2 ? ' table-striped table-hover' : '' }}">
+                    <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Заголовок</th>
+                        <th>URL</th>
+                        <th>Действие</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for page in pages %}
+                        <tr>
+                            <td>{{ page.id }}</td>
+                            <td>{{ page.title }}</td>
+                            <td>{{ page.alias }}</td>
+                            <td>
+                                <div class="btn-group-table">
+                                    <a href="#" data-id="{{ page.id }}" title="Удалить" class="btn btn-table page-remove">
+                                        <i class="fa fa-trash-o"></i></a>
+                                    <a href="/admin/page/edit-{{ page.id }}/" title="Редактировать" class="btn btn-table">
+                                        <i class="fa fa-pencil"></i> </a>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                {% if pager %}
+                    <div class="divider"></div>
+                    {{ pager }}
+                {% endif %}
+            {% else %}
+                Список станиц пуст
+            {% endif %}
+        </div>
+    </div>
+</div>

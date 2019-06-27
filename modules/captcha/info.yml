@@ -1,0 +1,5 @@
+type: module
+name: CAPTCHA
+description: 'Обеспечивает captcha для добавления в формы.'
+author: Aleksandr Pyshnov
+version: '0.1'

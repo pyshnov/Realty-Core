@@ -1,0 +1,58 @@
+<div class="content-header">
+    <div class="col-lg-9 col-md-8 col-sm-7">
+        <h2>{{ 'reviews.name'|t }}</h2>
+        {{ breadcrumb }}
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-5">
+        <div class="right-btn text-right">
+            <a href="#" class="btn btn-green" data-toggle="modal" data-target="#reviewModalAdd">Добавить отзыв</a>
+        </div>
+    </div>
+</div>
+<div class="content-body">
+    <div class="content-body__header">
+        <h4>{{ 'reviews.edit'|t }}</h4>
+    </div>
+    <div class="content-body__body">
+        <form class="form-horizontal form_validator" method="post">
+            <div class="form-group">
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        <label>
+                            <input name="approved" type="checkbox" value="1"{{ review.approved ? ' checked' : '' }}>
+                            <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+                            Опубликовать
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-4">
+                    <div class="input-group date datepicker">
+                        <input type="text" name="date" value="{{ review.date }}" class="form-control" />
+                        <span class="input-group-addon">
+                                                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                    </span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-4">
+                    <input placeholder="Имя автора" class="form-control" type="text" name="author" value="{{ review.author }}">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-4">
+                    <input placeholder="Email автора" class="form-control" type="text" name="author_email" value="{{ review.author_email }}">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-6">
+                    <textarea name="review" class="form-control" placeholder="Вопрос" required>{{ review.review }}</textarea>
+                </div>
+            </div>
+            <button type="sumbit" class="btn btn-green">Сохранить</button>
+            <input type="hidden" name="do" value="edit">
+        </form>
+    </div>
+</div>

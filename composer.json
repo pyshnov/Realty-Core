@@ -1,0 +1,39 @@
+{
+  "name": "pyshnov/core",
+  "type": "pyshnov-core",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "authors": [
+    {
+      "name": "Aleksandr Pyshnov",
+      "email": "aleksandr@pyshnov.ru"
+    }
+  ],
+  "require": {
+    "php": ">=7.0",
+    "psr/container": "^1.0",
+    "mobiledetect/mobiledetectlib": "^2.8",
+    "symfony/yaml": "^3.2",
+    "symfony/http-foundation": "^3.2",
+    "symfony/http-kernel": "^3.2",
+    "symfony/event-dispatcher": "^3.2",
+    "symfony/routing": "^3.2",
+    "symfony/filesystem": "^3.2",
+    "twig/twig": "^2.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Pyshnov\\Core\\": "lib/Pyshnov/Core"
+    },
+    "classmap": [
+      "lib/Pyshnov.php",
+      "lib/Pyshnov/Core/DB/DB.php",
+      "lib/Pyshnov/Core/PyshnovKernel.php",
+      "lib/Pyshnov/Core/PyshnovKernelInterface.php"
+    ]
+  },
+  "config": {
+    "preferred-install": "dist",
+    "autoloader-suffix": "Pyshnov"
+  }
+}

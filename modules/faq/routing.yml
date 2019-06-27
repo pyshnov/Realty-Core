@@ -1,0 +1,21 @@
+faq.admin:
+  path: '/admin/faq/'
+  defaults:
+    _controller: '\Pyshnov\faq\Controller\FaqController::adminFaq'
+  requirements:
+    _access: 'admin, moderator'
+faq.admin.edit:
+  path: '/admin/faq/edit-{id}/'
+  defaults:
+    _controller: '\Pyshnov\faq\Controller\FaqController::adminFaqEdit'
+  requirements:
+    id: '\d+'
+    _access: 'admin, moderator'
+faq:
+  path: '/faq/'
+  defaults:
+    _controller: '\Pyshnov\faq\Controller\FaqController::faq'
+faq.ajax:
+  path: '/ajax/faq/'
+  defaults:
+    _controller: '\Pyshnov\faq\Ajax\FaqAjax::runAction'

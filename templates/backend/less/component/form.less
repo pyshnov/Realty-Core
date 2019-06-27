@@ -1,0 +1,72 @@
+.form-control {
+  border-radius: 2px;
+}
+
+.nowrap-table-data {
+  min-width: 90px; // Отменяем перенос
+}
+
+.form-group {
+  .help-block-errors {
+    display: none;
+    color: #a94442;
+    font-size: 12px;
+  }
+
+  &.has-error,
+  .has-error {
+    .help-block-errors {
+      display: block;
+    }
+  }
+}
+.input-group {
+  .input-group-btn {
+    .bootstrap-select.btn-group:not(.input-group-btn) {
+      margin-left: -1px;
+    }
+    .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+      width: auto;
+    }
+  }
+}
+
+.radio, .checkbox {
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+.input-group-spacer {
+  position: relative; // For dropdowns
+  display: table;
+}
+
+.inputfile {
+  position: absolute;
+  z-index: -9999;
+  height: 0;
+  width: 0;
+  padding: 0;
+  margin: 0;
+  line-height: 0;
+  outline: rgb(0, 0, 0);
+  border: 0;
+  opacity: 0;
+
+  + label {
+    max-width: 80%;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    padding: 8px;
+    color: #828282;
+
+    .fa {
+      font-size: 18px;
+      margin-right: 10px;
+    }
+  }
+}

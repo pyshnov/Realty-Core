@@ -1,0 +1,138 @@
+<div class="content-header">
+    <div class="col-lg-9 col-md-8 col-sm-7">
+        <h2>{{ 'config.settings'|t }}</h2>
+        {{ breadcrumb }}
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-5">
+        <div class="right-btn text-right">
+            <button type="button" class="btn btn-green" data-toggle="modal" data-target="#settingModalAdd">
+                {{ 'config.new_parameter'|t }}
+            </button>
+        </div>
+    </div>
+</div>
+<div class="content-body">
+    <div class="content-body__header">
+        <h1 class="title">{{ 'config.system_settings'|t }}</h1>
+        <small>{{ 'config.description_settings'|t }}</small>
+    </div>
+    <div class="content-body__body">
+        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-5">
+            <div class="row">
+                <ul class="nav nav-tabs tabs-left">
+                    {% for key, value in config %}
+                        {% set tab_name = 'config.tab_' ~ key %}
+                        <li{{ key == tab ? ' class="active"' : '' }}><a href="#{{ key }}" data-toggle="tab">{{ tab_name|t }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="col-lg-10 col-md-9  col-sm-8 col-xs-7">
+            <div class="tab-content">
+                {% for name, items in config %}
+                    <div class="tab-pane{{ name == tab ? ' active' : '' }}" id="{{ name }}">
+                        <form class="form-horizontal form_config" method="post">
+                            <div class="settings-content">
+                                {% for key, value in items %}
+                                    <div class="item setting-item">
+                                        <div class="item-header">
+                                            <div class="value">
+                                                {{ value.element }}
+                                            </div>
+                                            <div class="title item-detail-show">
+                                                <i class="fa fa-angle-right fa-fw"></i>
+                                                {{ value.title }}
+                                            </div>
+                                        </div>
+                                        <div class="item-detail item-body">
+                                            <div class="key">
+                                                <strong>Ключ:</strong> <i>{{ value.setting }}</i>
+                                            </div>
+                                            <div class="desc">
+                                                {{ value.description }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <button class="btn btn-green" type="sumbit">Сохранить</button>
+                        </form>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal inmodal" id="settingModalAdd" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content animated bounceInRight">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <i class="fa fa-cogs modal-icon"></i>
+                <h4 class="modal-title">Создать новый параматр</h4>
+            </div>
+            <form id="ajaxSettingAdd">
+                <div class="modal-body">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Ключ</label>
+                            <input placeholder="Ключ настройки" class="form-control" type="text" name="setting" required min="4" data-error-msg="Поле 'Ключ' является обязательным и не может быть меньше 4 символов">
+                        </div>
+                        <div class="form-group">
+                            <label>Тип поля</label>
+                            <select name="type" data-width="100%">
+                                <option value="text">Текстовое поле</option>
+                                <option value="textarea">Текстовая область</option>
+                                <option value="checkbox">Чекбокс</option>
+                                <option value="language">Язык</option>
+                                <option value="template">Шаблон</option>
+                                <option value="dir">Источник</option>
+                                <option value="select">Выпадающий список</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Имя</label>
+                            <input class="form-control" type="text" name="name" required placeholder="Название настройки">
+                        </div>
+                        <div class="form-group">
+                            <label>Секция</label>
+                            <select name="section" data-width="100%">
+                                <option value="system">Общие</option>
+                                <option value="security">Безопасность</option>
+                                <option value="data">Объекты</option>
+                                <option value="email">Почта</option>
+                                <option value="images">Изображения</option>
+                                <option value="smartphone">Смартфоны</option>
+                                <option value="geodata">GeoData</option>
+                                <option value="user">Посетители</option>
+                                <option value="seo">SEO</option>
+                                <option value="sitemap">SiteMap</option>
+                                <option value="social_auther">SocialAuther</option>
+                                <option value="category">Категории</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Значение</label>
+                            <textarea name="value" class="form-control"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Описание</label>
+                            <textarea name="desc" class="form-control" placeholder="Краткое описание того, для чего служит данная настройка."></textarea>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Отменить</button>
+                    <button type="sumbit" class="btn btn-green">Сохранить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

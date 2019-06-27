@@ -1,0 +1,19 @@
+.content-faq .faq-item{
+    padding: 25px 0;
+    border-top: 1px solid #e0e0e0;
+}
+
+.content-faq .faq-item .question {
+    font-size: 16px;
+    color: #262626;
+    font-weight: bold;
+}
+
+.content-faq .faq-item .answer{
+    padding-top: 15px;
+    font-size: 14px;
+}
+
+.content-faq .faq-item .answer p{
+    margin: 0;
+}

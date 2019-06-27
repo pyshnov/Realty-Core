@@ -1,0 +1,4 @@
+socialauth:
+  path: '/socialauth/'
+  defaults:
+    _controller: '\Pyshnov\social_auther\Controller\SocialController::authorization'

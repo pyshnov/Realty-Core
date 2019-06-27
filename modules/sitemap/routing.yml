@@ -1,0 +1,4 @@
+sitemap:
+  path: '/sitemap.xml'
+  defaults:
+    _controller: '\Pyshnov\sitemap\Controller\SiteMap::sitemap'

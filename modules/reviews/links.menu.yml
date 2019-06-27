@@ -1,0 +1,6 @@
+reviews.admin:
+    enabled: true
+    title: Отзывы
+    route_name: reviews.admin
+    parent: system.content
+    menu_name: admin
