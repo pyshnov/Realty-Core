@@ -35,6 +35,7 @@ class Category
             $category[$row['id']] = $row;
         }
 
+
         if ($load_active) {
             // Выкидываем из массива элементы принадлежащие к неактивным категориям
             foreach ($category as $item) {
